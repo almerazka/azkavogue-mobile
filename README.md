@@ -195,7 +195,7 @@ Dalam proyek ini, tidak ada variabel yang terdampak oleh fungsi tersebut karena 
           );
         }
         ```
-      - Menampilkan Snackbar dengan Pesan "Kamu telah menekan tombol .."
+      - Menampilkan Snackbar dengan Pesan "Kamu telah menekan tombol .." dengan logika `onTap`
          ```dart
          ...
         @override
@@ -214,7 +214,10 @@ Dalam proyek ini, tidak ada variabel yang terdampak oleh fungsi tersebut karena 
           );
         }
         ```
+      - Integrasikan `InfoCard` dan `ItemCard` untuk ditampilkan di `MyHomePage` dengan cara mengubah bagian `Widget build()`.
+        
 5. **Jalankan Aplikasi**
    ```dart
     flutter run
    ```
+</details>
