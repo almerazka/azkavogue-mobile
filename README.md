@@ -9,7 +9,7 @@ _AzkaVogue_ adalah aplikasi mobile berbasis Flutter yang dirancang khusus untuk 
 - Kelas  : PBP C
 
 <details>
-<summary><h3>Tugas 7 PBP 2024/2025</h3></summary>
+<summary>Tugas 7 PBP 2024/2025</summary>
 
   ### 🫐 1. Jelaskan apa yang dimaksud dengan `stateless widget` dan `stateful widget`, dan jelaskan perbedaan dari keduanya!
   - **Stateless widget** adalah jenis widget yang tidak memiliki status internal yang bisa berubah setelah pertama kali dirender. Artinya, tampilan dan perilaku dari widget ini tetap konstan selama aplikasi berjalan, tanpa dipengaruhi oleh interaksi pengguna atau perubahan data. Karena, sifatnya yang statis, `stateless widget` sangat cocok digunakan untuk elemen yang hanya perlu ditampilkan satu kali dan tidak akan berubah. Contohnya seperti `Text`, `Icon`, `Image`, `Container`, yang tidak interaktif dan tidak memerlukan pembaruan tampilan.
@@ -221,3 +221,162 @@ Dalam proyek ini, tidak ada variabel yang terdampak oleh fungsi tersebut karena 
     flutter run
    ```
 </details>
+<details>
+<summary>Tugas 8 PBP 2024/2025</summary>
+  
+### 🍎 1. Apa kegunaan `const` di Flutter? Jelaskan apa keuntungan ketika menggunakan `const` pada kode Flutter. Kapan sebaiknya kita menggunakan `const`, dan kapan sebaiknya tidak digunakan?
+  Kata kunci `const` digunakan ketika kita membuat objek atau widget yang bersifat
+  `immutable`dan dikompilasi pada waktu kompilasi. Artinya, objek atau widget yang diberi `const` tidak akan berubah selama aplikasi berjalan dan hanya dibuat sekali di memori.
+  - **Keuntungan** :
+    - Efisiensi Memori : Karena `const` hanya dibuat sekali di memori jadinya penggunaaan `const` dapat mengurangi jumlah objek yang dibuat dan dihapus, ini ngebantu banget buat menekan penggunaan memori
+    - Peningkatan Performa : Dengan menggunakan `const`, Flutter dapat mengoptimalkan widget dan menghindari pembuatan ulang widget yang sama berulang kali. Hal ini sangat berguna karena bisa mempercepat rendering dan meminimalkan proses rebuild sehingga aplikasi bisa menjadi lebih efisien saat dijalankan.
+      
+  - **Kapan Menggunakannya?**
+    - Gunakan `const` saat widget atau properti yang digunakan bersifat statis dan tidak berubah selama aplikasi berjalan, seperti teks, ikon, ukuran font, warna, padding, dan elemen yang tidak dipengaruhi oleh interaksi pengguna atau perubahan data.
+   
+  - **Kapan Tidak Menggunakan `const`?**
+    - Hindari `const` pada elemen yang dinamis atau nilainya bisa berubah selama aplikasi berjalan, terutama pada `StatefulWidget` yang memerlukan pembaruan saat state berubah. Penggunaan `const` pada elemen dinamis bisa menyebabkan kegagalan atau error saat _rebuild_.
+
+### 🍍 2.  Jelaskan dan bandingkan penggunaan `Column` dan `Row` pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+   - **Column** :
+     Column adalah widget yang menata anak-anaknya secara vertikal (atas ke bawah). Biasanya cocok untuk menampilkan konten bertingkat seperti formulir atau daftar item
+     ```dart
+       child: Column(
+            mainAxisAlignment: MainAxisAlignment.center, //mengatur posisi vertikal 
+            crossAxisAlignment: CrossAxisAlignment.start, mengatur posisi horizontal 
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Enter product name",
+                    labelText: "Name",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                 ....
+     ```
+     - **Row** :
+     Column adalah widget yang menata anak-anaknya secara horizontal (kiri ke kanan) Biasanya cocok untuk toolbar, menu, deretan ikon, tombol yang sejajar. atau menampilkan elemen dalam satu baris.
+     ```dart
+       Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly, //Mengatur posisi di sepanjang sumbu utama (horizontal).
+              crossAxisAlignment: CrossAxisAlignment.center, //Mengatur posisi anak-anak di sumbu silang (vertikal).
+              children: [
+                InfoCard(title: 'NPM', content: npm),
+                InfoCard(title: 'Name', content: name),
+                InfoCard(title: 'Class', content: className),
+              ],
+            ),
+     ```
+### 🍌 3.  Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+Dalam tugas kali ini, elemen input yang saya gunakan :
+- `TextFormField` digunakan untuk menerima input dari pengguna berupa teks.
+  Terdapat beberapa `TextFormField` pada form ini, masing-masing untuk mengisi data seperti nama produk, harga produk, deskripsi produk, dan jumlah produk yang juga dilengkapi dengan atribut validator
+= `ElevatedButton` digunakan untuk menyimpan data yang dimasukkan pada form ketika tombol `Save` ditekan. Button ini juga digunakan untuk memicu validasi form dan menampilkan hasil input pengguna dalam bentuk dialog.
+
+Elemen input yang tidak saya gunakan, antara lain:
+- `Checkbox`: Digunakan untuk memilih satu atau lebih opsi dalam bentuk kotak centang, ya/tidak.
+- `Radio` : Digunakan untuk memilih satu opsi dari beberapa pilihan yang ada
+- `Switch` : Digunakan untuk memilih antara dua keadaan
+- `DropdownButton` : Digunakan untuk memilih satu nilai dari daftar pilihan yang tersedia.
+- `DatePicker` dan `TimePicker` : Digunakan untuk memilih tanggal atau waktu.
+- `Slider` : Digunakan untuk memilih nilai dalam rentang tertentu menggunakan penggeser, seperti volume atau tingkat pencahayaan.
+
+
+### 🥑 4. Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+Cara saya mengatur tema dalam aplikasi Flutter agar aplikasi tetap konsisten adalah dengan menggunakan `ThemeData` yang memungkinkan Anda untuk mendefinisikan pengaturan tema secara global untuk seluruh aplikasi. Tema ini bisa mencakup warna, gaya teks, ikon, dan banyak elemen UI lainnya yang konsisten di seluruh aplikasi.
+  ```dart
+    class MyApp extends StatelessWidget {
+      const MyApp({super.key});
+    
+      // This widget is the root of your application.
+      @override
+      Widget build(BuildContext context) {
+        return MaterialApp(
+          title: 'Azka Vogue',
+          theme: ThemeData(
+            // Menentukan background color seluruh aplikasi
+            scaffoldBackgroundColor: Colors.grey[100],
+            // Menentukan skema warna (primary dan secondary)
+            colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: Colors.grey, 
+            ).copyWith(secondary: const Color(0xFF212121)),
+            useMaterial3: true,
+          ),
+          home: MyHomePage(),
+        );
+      }
+    }
+  ```
+Tema yang sudah ditentukan pada `MaterialApp` ini akan diterapkan secara global pada seluruh widget aplikasi, kecuali jika ada widget tertentu yang ingin memiliki tema berbeda. Penggunaan `Theme.of(context)` juga dapat mengakses tema yang sudah didefinisikan 
+```dart
+    ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        primary: Theme.of(context).colorScheme.secondary, // Menggunakan warna sekunder dari tema
+      ),
+      child: const Text("Add Product"),
+    )
+```
+
+### 🍇 5. Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+Dalam aplikasi Flutter, navigasi antar halaman (screens) dapat ditangani menggunakan beberapa pendekatan, tergantung pada kompleksitas aplikasi dan kebutuhan navigasi yang kita inginkan. Flutter sendiri menyediakan sistem `Navigator` yang memungkinkan peralihan antar halaman secara mudah. Kita dapat menggunakan `Navigator.push()` untuk membuka halaman baru (ditambahin gitu ke stack) dan `Navigator.pop()` untuk kembali ke halaman sebelumnya (menghapus halaman baru ke stack).
+
+**Navigasi dari LeftDrawer (Drawer Menu)**
+```dart
+// Menavigasi ke halaman utama
+ListTile(
+  leading: const Icon(Icons.home_outlined),
+  title: const Text('Homepage'),
+  onTap: () {
+    Navigator.pushReplacement( //menggantikan halaman yang aktif dengan halaman baru, menghapus halaman sebelumnya dari stack 
+      context,
+      MaterialPageRoute(
+        builder: (context) => MyHomePage(),
+      ),
+    );
+  },
+),
+
+// Menavigasi ke halaman 'Add Product'
+ListTile(
+  leading: const Icon(Icons.add),
+  title: const Text('Add Product'),
+  onTap: () {
+    Navigator.push( //membuka halaman baru tanpa mengganti atau menghapus halaman sebelumnya
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ProductEntryFormPage(),
+      ),
+    );
+  },
+),
+```
+
+**Navigasi dari ItemCard**
+```dart
+ child: InkWell(
+        // Aksi ketika kartu ditekan.
+        onTap: () {
+          // Menampilkan pesan SnackBar saat kartu ditekan.
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(content: Text("You have pressed the button ${item.name}!"))
+            );
+          // Navigate ke route yang sesuai (tergantung jenis tombol)
+          if (item.name == "Add Product") {
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProductEntryFormPage()),
+            );
+          }
+        },
+```
+
+Untuk aplikasi dengan banyak bagian, penggunaan `Drawer` sendiri sangat membantu dalam mengelola navigasi antar halaman. `LeftDrawer` disini digunakan sebagai menu samping yang memungkinkan pengguna untuk berpindah antara halaman-halaman yang berbeda. Masing-masing `ListTile` mewakili item menu di `Drawer`, dan setiap itemnya dapat digunakan untuk menavigasi ke halaman yang berbeda.
+
+</details>
+
