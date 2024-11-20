@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:azka_vogue/screens/menu.dart';
+import 'package:azka_vogue/screens/login.dart';
+import 'package:azka_vogue/utils/colors.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,19 +11,24 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Azka Vogue',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.grey[100],
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.grey, 
+    return Provider(
+      create: (_) {
+        CookieRequest request = CookieRequest();
+        return request;
+      },
+      child: MaterialApp(
+        title: 'Azka Vogue',
+        theme: ThemeData(
+          useMaterial3: true,
+          scaffoldBackgroundColor: Colors.grey[100],
+          colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: customDarkGrey, 
         ).copyWith(secondary: const Color(0xFF212121)),
-        useMaterial3: true,
+        ),
+        home: const LoginPage(),
       ),
-      home: MyHomePage(),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:azka_vogue/screens/menu.dart';
 import 'package:azka_vogue/screens/productentry_form.dart';
+import 'package:azka_vogue/screens/list_product.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -55,7 +56,7 @@ class LeftDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.add),
+            leading: const Icon(Icons.add_business),
             title: const Text('Add Product'),
             onTap: () {
               Navigator.push(
@@ -66,6 +67,17 @@ class LeftDrawer extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.local_grocery_store),
+            title: const Text('Product List'),
+            onTap: () {
+                // Route menu ke halaman mood
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ProductEntryPage()),
+                );
+            },
+        ),
         ],
       ),
     );
